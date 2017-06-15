@@ -43,11 +43,11 @@
     
       <category term="hello world" scheme="http://yoursite.com/tags/hello-world/"/>
     
-      <category term="[object Object]" scheme="http://yoursite.com/tags/object-Object/"/>
-    
       <category term="hello burt" scheme="http://yoursite.com/tags/hello-burt/"/>
     
       <category term="hello wstever" scheme="http://yoursite.com/tags/hello-wstever/"/>
+    
+      <category term="[object Object]" scheme="http://yoursite.com/tags/object-Object/"/>
     
   </entry>
   
