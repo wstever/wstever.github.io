@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-14T03:26:29.520Z</updated>
+  <updated>2017-06-15T03:06:35.139Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,24 +16,24 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>温仕添的第一篇个人博客</title>
+    <title></title>
     <link href="http://yoursite.com/2017/06/14/hi/"/>
     <id>http://yoursite.com/2017/06/14/hi/</id>
-    <published>2017-06-14T03:12:00.000Z</published>
-    <updated>2017-06-14T03:26:29.520Z</updated>
+    <published>2017-06-14T03:17:36.471Z</published>
+    <updated>2017-06-15T03:06:35.139Z</updated>
+    
+    <content type="html"><![CDATA[<p>title: 温仕添的第一篇个人博客<br>date: 2017-06-14 11:12<br>tags:hello world,hello burt,hello wstever</p>
+<p>categories: [first]</p>
+]]></content>
     
     <summary type="html">
     
+      &lt;p&gt;title: 温仕添的第一篇个人博客&lt;br&gt;date: 2017-06-14 11:12&lt;br&gt;tags:hello world,hello burt,hello wstever&lt;/p&gt;
+&lt;p&gt;categories: [first]&lt;/p&gt;
+
+    
     </summary>
     
-    
-      <category term="hello world" scheme="http://yoursite.com/tags/hello-world/"/>
-    
-      <category term="hello burt" scheme="http://yoursite.com/tags/hello-burt/"/>
-    
-      <category term="hello wstever" scheme="http://yoursite.com/tags/hello-wstever/"/>
-    
-      <category term="[object Object]" scheme="http://yoursite.com/tags/object-Object/"/>
     
   </entry>
   
