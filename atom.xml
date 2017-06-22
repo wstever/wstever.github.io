@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-15T03:13:05.840Z</updated>
+  <updated>2017-06-22T08:47:28.961Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,20 +20,24 @@
     <link href="http://yoursite.com/2017/06/14/hi/"/>
     <id>http://yoursite.com/2017/06/14/hi/</id>
     <published>2017-06-14T03:17:36.471Z</published>
-    <updated>2017-06-15T03:13:05.840Z</updated>
+    <updated>2017-06-22T08:47:28.961Z</updated>
     
-    <content type="html"><![CDATA[<p>title: 温仕添的第一篇个人博客<br>date: 2017-06-14 11:12<br>tags:hello world</p>
+    <content type="html"><![CDATA[<p>title: 温仕添的第一篇个人博客</p>
+<p>date: 2017-06-14 11:12</p>
+<p>tags: hello world</p>
 <p>-hello burt</p>
-<p>-,hello wstever</p>
+<p>-hello wstever</p>
 <p>categories: [first]</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;title: 温仕添的第一篇个人博客&lt;br&gt;date: 2017-06-14 11:12&lt;br&gt;tags:hello world&lt;/p&gt;
+      &lt;p&gt;title: 温仕添的第一篇个人博客&lt;/p&gt;
+&lt;p&gt;date: 2017-06-14 11:12&lt;/p&gt;
+&lt;p&gt;tags: hello world&lt;/p&gt;
 &lt;p&gt;-hello burt&lt;/p&gt;
-&lt;p&gt;-,hello wstever&lt;/p&gt;
-&lt;p&gt;categories: [first]&lt;/p&gt;
+&lt;p&gt;-hello wstever&lt;/p&gt;
+&lt;p&gt;categories: [fi
     
     </summary>
     
