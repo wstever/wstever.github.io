@@ -1,0 +1,45 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 或者 master，取决于你的默认分支是哪个
+    # 只有当代码变动在这些目录下时触发 (可选，也可以去掉这几行)
+    # paths:
+    #   - 'docs/**'
+    #   - 'src/**'
+    #   - 'docusaurus.config.js'
+
+permissions:
+  contents: write # 允许 Action 写入 gh-pages 分支
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm # 如果你用 yarn，这里改成 'yarn'
+
+      - name: Install dependencies
+        run: npm ci # 如果你用 yarn，这里改成 'yarn install --frozen-lockfile'
+
+      - name: Build website
+        run: npm run build # 如果你用 yarn，这里改成 'yarn build'
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # 发布的目录，Docusaurus 默认构建在 build 文件夹
+          publish_dir: ./build
+          # 这里的 user_name 和 user_email 可以随意写，用于 git commit 记录
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
+
