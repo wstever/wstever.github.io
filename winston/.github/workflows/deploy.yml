@@ -17,6 +17,9 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./winston
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,20 +28,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: npm # 如果你用 yarn，这里改成 'yarn'
+          cache: npm
+          cache-dependency-path: winston/package-lock.json
 
       - name: Install dependencies
-        run: npm ci # 如果你用 yarn，这里改成 'yarn install --frozen-lockfile'
+        run: npm ci
 
       - name: Build website
-        run: npm run build # 如果你用 yarn，这里改成 'yarn build'
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # 发布的目录，Docusaurus 默认构建在 build 文件夹
-          publish_dir: ./build
+          # 发布的目录，Docusaurus 默认构建在 winston/build 文件夹
+          publish_dir: ./winston/build
           # 这里的 user_name 和 user_email 可以随意写，用于 git commit 记录
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
