@@ -34,8 +34,36 @@ jobs:
       - name: Install Dependencies
         run: npm ci # 或者 npm install
 
+      - name: Install Theme
+        run: |
+          mkdir -p themes
+          if [ ! -d "themes/material-indigo" ]; then
+            echo "Cloning theme repository..."
+            git clone --depth 1 https://github.com/yscoder/hexo-theme-indigo.git themes/material-indigo
+          else
+            echo "Theme already exists, updating..."
+            cd themes/material-indigo
+            git pull || true
+            cd ../..
+          fi
+          # 验证主题是否安装成功
+          if [ ! -d "themes/material-indigo" ]; then
+            echo "Error: Theme installation failed"
+            exit 1
+          fi
+          echo "Theme installed successfully"
+
       - name: Build
         run: npm run build # 对应 package.json 里的 "hexo generate"
+
+      - name: Verify Build Output
+        run: |
+          if [ ! -f "public/index.html" ]; then
+            echo "Error: index.html not found in public directory"
+            exit 1
+          fi
+          echo "Build verification passed"
+          ls -la public/ | head -20
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
