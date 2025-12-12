@@ -20,15 +20,21 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://wstever.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  // 如果是用户主站 (仓库名为 wstever.github.io)，这里填 '/'
+  // 如果是项目子站 (仓库名为 winston)，这里填 '/winston/'
+  baseUrl: '/winston/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'wstever', // Usually your GitHub org/user name.
+  projectName: 'winston', // Usually your repo name.
+
+  // 部署行为配置
+  deploymentBranch: 'gh-pages', // 部署到的分支名，通常默认为 gh-pages
+  trailingSlash: false,         // GitHub Pages 建议设为 false
 
   onBrokenLinks: 'throw',
 
