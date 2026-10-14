@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>温仕添 Shitian Wen · AI 应用开发 / Agent 平台</title>
-<meta name="description" content="温仕添（Shitian Wen），深圳，AI 应用开发与 Agent 平台建设。9 年软件工程，Java 企业级开发 → 大模型应用落地。" />
+<title>温仕添 Winston Wen · AI Agent 开发工程师</title>
+<meta name="description" content="温仕添（Winston Wen），深圳。3 年大模型量产落地 + 8 年 Java 后端，专注 AI Agent、RAG、多模态交互在智能硬件与车联网领域的工程化落地。" />
 <style>
   :root {
     --ink: #1a1a1a;
@@ -25,9 +25,8 @@
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 64px 28px 80px; }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 64px 28px 80px; }
 
-  /* header */
   header.masthead { border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 36px; }
   .eyebrow {
     font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -36,7 +35,8 @@
   }
   h1 { font-size: 34px; margin: 0 0 6px; font-weight: 700; letter-spacing: 0.02em; }
   h1 .en { color: var(--ink-mute); font-weight: 400; font-size: 20px; margin-left: 10px; }
-  .tagline { font-size: 17px; color: var(--ink-soft); margin: 0 0 18px; }
+  .tagline { font-size: 16.5px; color: var(--ink-soft); margin: 0 0 6px; }
+  .tagline-sub { font-size: 14px; color: var(--ink-mute); margin: 0 0 18px; }
   .meta {
     font-family: -apple-system, "Segoe UI", "PingFang SC", sans-serif;
     font-size: 13px; color: var(--ink-mute); display: flex; flex-wrap: wrap; gap: 18px;
@@ -44,52 +44,60 @@
   .meta a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent-soft); }
   .meta a:hover { color: var(--ink); }
 
-  /* sections */
-  section { margin-bottom: 34px; }
+  section { margin-bottom: 32px; }
   h2 {
     font-size: 13px; letter-spacing: 0.3em; color: var(--accent); font-weight: 600;
     margin: 0 0 16px; font-family: -apple-system, "Segoe UI", "PingFang SC", sans-serif;
   }
   h2::after { content: ""; display: block; height: 1px; background: var(--line); margin-top: 8px; }
-  p { margin: 0 0 12px; }
-  .lead { font-size: 16.5px; color: var(--ink); }
+  p { margin: 0 0 10px; }
+  ul.bullets { margin: 0; padding-left: 1.2em; }
+  ul.bullets li { margin-bottom: 6px; color: var(--ink-soft); }
+  ul.bullets b { color: var(--ink); }
 
-  /* projects */
-  .project { margin-bottom: 18px; padding-left: 14px; border-left: 2px solid var(--line); }
-  .project:hover { border-left-color: var(--accent); }
-  .project h3 { font-size: 16.5px; margin: 0 0 4px; font-weight: 700; }
-  .project .role { font-family: -apple-system, "PingFang SC", sans-serif; font-size: 12.5px; color: var(--ink-mute); margin-bottom: 6px; }
-  .project p { margin: 0; font-size: 15px; color: var(--ink-soft); }
-  .project .num { color: var(--accent); font-weight: 600; }
-
-  /* skills */
-  .skill-layer { margin-bottom: 14px; }
+  .skill-layer { margin-bottom: 12px; }
   .skill-layer .layer-name {
     font-family: -apple-system, "PingFang SC", sans-serif;
-    font-size: 12.5px; color: var(--ink-mute); letter-spacing: 0.1em; margin-bottom: 4px;
+    font-size: 12.5px; color: var(--ink-mute); letter-spacing: 0.08em; margin-bottom: 3px;
   }
-  .skill-layer .layer-items { font-size: 15px; color: var(--ink); }
+  .skill-layer .layer-items { font-size: 14.5px; color: var(--ink-soft); }
   .skill-layer .layer-items b { color: var(--accent); font-weight: 600; }
 
-  /* timeline */
-  .job { margin-bottom: 16px; }
+  .job { margin-bottom: 18px; }
   .job .when {
     font-family: -apple-system, "PingFang SC", sans-serif;
     font-size: 12.5px; color: var(--ink-mute); float: right;
   }
   .job h3 { font-size: 16px; margin: 0 0 2px; }
   .job .org { color: var(--accent); font-weight: 600; }
-  .job p { margin: 4px 0 0; font-size: 14.5px; color: var(--ink-soft); }
+  .job .sub { font-size: 13px; color: var(--ink-mute); margin: 0 0 6px; }
+  .job ul { margin: 6px 0 0; padding-left: 1.2em; }
+  .job li { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 4px; }
+  .job li b { color: var(--ink); }
 
-  /* links */
+  .project { margin-bottom: 18px; padding-left: 14px; border-left: 2px solid var(--line); }
+  .project:hover { border-left-color: var(--accent); }
+  .project h3 { font-size: 16px; margin: 0 0 2px; font-weight: 700; }
+  .project .role { font-family: -apple-system, "PingFang SC", sans-serif; font-size: 12.5px; color: var(--ink-mute); margin-bottom: 6px; }
+  .project ul { margin: 4px 0 0; padding-left: 1.2em; }
+  .project li { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 4px; }
+  .project .stack {
+    font-family: -apple-system, "PingFang SC", sans-serif;
+    font-size: 12.5px; color: var(--ink-mute); margin-top: 6px;
+  }
+  .project .num { color: var(--accent); font-weight: 600; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
+
   .links a {
     color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line);
-    margin-right: 18px; white-space: nowrap;
+    margin-right: 16px; white-space: nowrap; font-size: 14.5px;
   }
   .links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
   footer {
-    margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line);
+    margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line);
     font-family: -apple-system, "PingFang SC", sans-serif;
     font-size: 12px; color: var(--ink-mute); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
   }
@@ -109,8 +117,9 @@
 
   <header class="masthead">
     <p class="eyebrow">Online Résumé</p>
-    <h1>温仕添 <span class="en">Shitian Wen</span></h1>
-    <p class="tagline">AI 应用开发 / Agent 平台 · 深圳 · 9 年工程，Java → 大模型落地</p>
+    <h1>温仕添 <span class="en">Winston Wen</span></h1>
+    <p class="tagline">AI Agent 开发工程师 · 3 年大模型量产落地 + 8 年 Java 后端</p>
+    <p class="tagline-sub">专注 AI Agent、RAG、多模态交互在智能硬件与车联网领域的工程化落地</p>
     <div class="meta">
       <span>深圳</span>
       <span>📮 <a href="mailto:tiange@wstever.dev">tiange@wstever.dev</a></span>
@@ -121,76 +130,128 @@
 
   <section>
     <h2>关于</h2>
-    <p class="lead">计算机科班，英语双学位。早年做 Java 企业级开发与微服务，带过车联网团队和 AI 智能硬件研发，近三年 all in 大模型应用与 Agent 落地。</p>
-    <p>现就职于联想 GSC，做制造业供应链方向的 AI 应用开发与 Agent 平台建设——不做 Demo，做接进十九个核心系统、能扛住业务方追问的那种。业余带电器品牌电商项目，也在中小学讲台用 AI 重排备课与批阅流程。</p>
+    <ul class="bullets">
+      <li>3 年大模型应用开发 + 8 年 Java 后端 + 4 年车联网行业沉淀，计算机科班出身，英语双学位。</li>
+      <li>主导 <b>2 款 AI 智能硬件产品从 0 到 1 量产落地</b>，覆盖超 10 万台设备，服务京东、九牧等头部客户。</li>
+      <li>优化大模型交互链路，响应耗时降低 <b>30%</b> 以上；车联网平台微服务架构升级，系统可用性达 <b>99.99%</b>。</li>
+      <li>PMP / 阿里云大模型 ACA / CAIE 持证，爱做技术分享，运营 AI 实战公众号。</li>
+    </ul>
   </section>
 
   <section>
-    <h2>代表项目</h2>
-
-    <div class="project">
-      <h3>制造业供应链 Agent 平台</h3>
-      <div class="role">联想 GSC · AI 应用开发 / Agent 平台 · 2026 — 至今</div>
-      <p>对接十九个核心业务系统（ERP / APS / MES / WMS / QMS 等）与十条端到端流程，把跨系统的人肉跑腿环节织成 Agent 跑的链。重点不在模型多强，在数据底座对齐、异常分支兜底和业务方的需求翻译。</p>
-    </div>
-
-    <div class="project">
-      <h3>生成式 HMI · 上海车展亮点项目</h3>
-      <div class="role">某头部车企 Tier1 · 智能座舱 · 项目核心成员</div>
-      <p>在车机 HMI 里落地生成式交互，语音+视觉+场景融合，作为车展亮点展出。负责后端服务与多轮对话状态管理。</p>
-    </div>
-
-    <div class="project">
-      <h3>AI 玩具 Agent · 多轮对话与长期记忆</h3>
-      <div class="role">AI 智能硬件 · 技术负责人</div>
-      <p>在端云协同架构上跑通儿童陪伴 Agent：多轮对话、儿童安全过滤、长期记忆与个性化人设。已落地到量产客户。</p>
-    </div>
-
-    <div class="project">
-      <h3>失效分析 AI 代理</h3>
-      <div class="role">制造业质检场景 · AI Agent</div>
-      <p>把失效分析工程师过去 <span class="num">72 小时</span>的人工排查流程，压缩到 <span class="num">10 分钟</span>。规则做兜底，模型处理模糊语义，工程师签字确认。</p>
-    </div>
-  </section>
-
-  <section>
-    <h2>技能</h2>
+    <h2>核心技能</h2>
     <div class="skill-layer">
-      <div class="layer-name">AI / 大模型</div>
-      <div class="layer-items"><b>用 RAG + Agent 编排</b>做成过企业级知识库与流程自动化；Spring AI / LangChain / MCP；Prompt 体系与评估</div>
+      <div class="layer-name">AI 应用层</div>
+      <div class="layer-items"><b>大模型应用</b>：Spring AI、LangChain、Coze 智能体与工作流编排、RAG 检索增强、多模型集成（DeepSeek / 通义 / 火山方舟）</div>
     </div>
     <div class="skill-layer">
-      <div class="layer-name">后端</div>
-      <div class="layer-items">Java / Spring Cloud / 微服务，八年企业级开发；Python / Node.js；消息队列与分布式事务</div>
+      <div class="layer-name">&nbsp;</div>
+      <div class="layer-items"><b>Agent 架构</b>：AI Agent 编排、Mem0 长期记忆、Milvus 向量库、多轮对话与情感识别</div>
     </div>
     <div class="skill-layer">
-      <div class="layer-name">工程</div>
-      <div class="layer-items">Kubernetes / CI-CD / 可观测性；从车联网到工厂场景，习惯在"不能停"的生产系统上改东西</div>
+      <div class="layer-name">&nbsp;</div>
+      <div class="layer-items"><b>多模态交互</b>：FunASR / 讯飞 ASR、TTS 语音合成、文生图、端云协同（MQTT / UDP）</div>
+    </div>
+    <div class="skill-layer">
+      <div class="layer-name">Java 后端层</div>
+      <div class="layer-items">Java / JVM 调优 / 高并发；Spring Cloud Alibaba（Gateway / Nacos / Sentinel / Seata）；MySQL / TDengine / ClickHouse / Doris；Kafka / Redis / RocketMQ / XXL-JOB</div>
+    </div>
+    <div class="skill-layer">
+      <div class="layer-name">工程与架构层</div>
+      <div class="layer-items">K8s / Docker / DevOps（Jenkins / ELK / Grafana / SkyWalking）；限流削峰与全链路观测；带过 5 人团队，项目全生命周期管理</div>
     </div>
   </section>
 
   <section>
-    <h2>经历</h2>
+    <h2>工作经历</h2>
+
     <div class="job">
       <span class="when">2026.06 — 至今</span>
       <h3><span class="org">联想 GSC</span> · AI 应用开发 / Agent 平台</h3>
-      <p>制造业供应链数字化，主导 Agent 平台 iChain 建设与数据底座 LUDP 对接。</p>
+      <p class="sub">制造业供应链 · LME</p>
+      <ul>
+        <li>主导制造业供应链方向的 Agent 平台建设，对接十九个核心业务系统与十条端到端流程，把跨系统的人肉跑腿环节织成 Agent 跑的链。</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <span class="when">2025.07 — 2026.06</span>
+      <h3><span class="org">深圳和而泰智能产品</span> · AI Agent 开发工程师</h3>
+      <p class="sub">消费级 AI 智能硬件 · 物联网</p>
+      <ul>
+        <li>负责消费级 AI 硬件的大模型应用全链路，主导 AI Agent 架构设计、RAG 系统优化、端云协同方案，支撑多条产品线量产交付。</li>
+        <li>核心业绩：主导 <b>2 款 AI 硬件从 0 到 1 落地，量产超 10 万台</b>；大模型交互响应耗时降低 <b>30%</b> 以上。</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <span class="when">2017.07 — 2025.07</span>
+      <h3><span class="org">德赛西威</span>（头部汽车电子 Tier1）· Java 高级开发工程师</h3>
+      <p class="sub">车联网云平台 · 汽车零部件</p>
+      <ul>
+        <li>负责车联网云平台架构设计与开发，主导捷豹路虎、广汽丰田等头部车企项目交付；累计交付 <b>10+ 车联网量产项目</b>。</li>
+        <li>主导大模型技术在车联网云平台落地，设计"AI 引擎 + 云平台"融合方案；带 5 人团队完成项目全生命周期管理。</li>
+        <li>完成车联网平台微服务架构升级，系统可用性提升至 <b>99.99%</b>；多次获公司年度优秀员工、集团项目奖项。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>精选项目</h2>
+
+    <div class="project">
+      <h3>AI 玩具系列项目</h3>
+      <div class="role">AI Agent 开发 · 2025.07 — 至今 · 儿童智能陪伴硬件，覆盖二代 AI 萌宠、三代 AI 挂件全产品线</div>
+      <ul>
+        <li>主导整体 AI Agent 架构设计，自研大模型长期记忆模块（LLM + Embedding + Milvus），Agent 任务完成率 <span class="num">92%+</span>。</li>
+        <li>融合 Coze 智能体、工作流与 LiteFlow 流程引擎，实现多轮对话、英语启蒙互动、角色定制、成长日志生成。</li>
+        <li>优化流式交互链路，响应耗时降低 <span class="num">30%+</span>，支撑超 10 万台量产设备，日均对话交互超 <span class="num">50 万次</span>。</li>
+      </ul>
+      <div class="stack">Spring AI / Coze / Mem0 / Milvus / FunASR / 字节 TTS / MQTT / Spring Cloud / K8s</div>
+    </div>
+
+    <div class="project">
+      <h3>AI 美妆镜项目</h3>
+      <div class="role">AI Agent 开发 · 2026.01 — 2026.05 · 面向美妆护肤垂直领域的 AI 智能助手</div>
+      <ul>
+        <li>负责 RAG 知识库构建与检索召回优化，RAG 问答准确率提升至 <span class="num">95%</span>，垂直场景幻觉率降低 <span class="num">60%</span>，支撑 3 条产品线量产。</li>
+        <li>设计端云协同方案，通过 MQTT 实现设备指令控制与对话流管理，语音咨询 <span class="num">2 秒内</span>低延迟响应。</li>
+      </ul>
+      <div class="stack">Spring AI / Coze 多智能体 / RAG / FunASR / 讯飞 ASR·TTS / Nacos / XXL-JOB / K8s</div>
+    </div>
+
+    <div class="project">
+      <h3>生成式 HMI 项目</h3>
+      <div class="role">AI Agent 开发 · 2024.08 — 2025.04 · 上海车展核心展示标杆功能</div>
+      <ul>
+        <li>通过大模型 LLM 与前端技术融合，实现语音驱动的 HMI 页面动态生成、DIY 布局、主题风格一键切换，颠覆传统 UI/UX 开发流程。</li>
+        <li>高压交付周期内完成行业级标杆功能落地，获行业高度关注。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>教育背景</h2>
+    <div class="job">
+      <span class="when">2025.09 — 至今</span>
+      <h3>深圳大学 · 人工智能教育专业（在职研修·在读）</h3>
+      <p class="sub">核心课程：人工智能技术、深度学习算法、大模型应用理论</p>
     </div>
     <div class="job">
-      <span class="when">2023 — 2026</span>
-      <h3>AI 智能硬件 / 车联网 · 技术 TL</h3>
-      <p>从车联网后端团队负责人，转方向到 AI 玩具与生成式座舱，带团队把大模型能力塞进端云协同的硬件产品里。</p>
+      <span class="when">2013.09 — 2017.06</span>
+      <h3>惠州学院 · 计算机科学与技术 &amp; 英语 双学士学位</h3>
+      <p class="sub">班级排名前 10，大学班长，嵌入式实验室核心成员，CET-6（536 分）</p>
     </div>
-    <div class="job">
-      <span class="when">2017 — 2023</span>
-      <h3>Java 企业级开发 · 后端工程师 → TL</h3>
-      <p>八年 Spring Cloud / 微服务，做过电商、供应链、企业内部系统，写过被几百人每天调用的接口。</p>
-    </div>
-    <div class="job">
-      <span class="when">业余</span>
-      <h3>电商项目负责人 · 语文教师 / 数学学情分析</h3>
-      <p>服务公牛、德力西、小米等电器品牌；同时在讲台用 AI 重排备课、批阅与反馈流程。</p>
-    </div>
+  </section>
+
+  <section>
+    <h2>证书与荣誉</h2>
+    <ul class="bullets">
+      <li><b>PMP</b> 项目管理专业人士资格认证 · <b>阿里云大模型工程师 ACA</b> · <b>CAIE</b> 注册人工智能一级</li>
+      <li>中级软件设计师 / 中级系统集成项目管理工程师 · BEC 商务英语中级 / CET-6</li>
+      <li>TopCoder 编程挑战赛"编程先锋"称号 · 车联网部门年度"明日之星"</li>
+      <li>企业内训师，开发《Coze 应用》《代码重构技巧》精品课程，获"优秀讲师"称号</li>
+    </ul>
   </section>
 
   <section>
@@ -204,15 +265,9 @@
     </p>
   </section>
 
-  <section>
-    <h2>教育与证书</h2>
-    <p>计算机科学与技术 本科 · 英语 双学位</p>
-    <p>PMP · 软件设计师 · 企业内 AI 精品课程讲师</p>
-  </section>
-
   <footer>
-    <span>© Shitian Wen · 深圳</span>
-    <span>本页为在线展示面，详细简历请邮件索取。</span>
+    <span>© Winston Wen · 深圳</span>
+    <span>本页为在线展示面，完整简历请邮件索取。</span>
   </footer>
 
 </div>
