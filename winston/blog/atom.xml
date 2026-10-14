@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="atom.xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://wstever.github.io/winston/blog</id>
+    <title>添哥的AI场景实战 Blog</title>
+    <updated>2026-10-13T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://wstever.github.io/winston/blog"/>
+    <subtitle>添哥的AI场景实战 Blog</subtitle>
+    <icon>https://wstever.github.io/winston/img/favicon.svg</icon>
+    <entry>
+        <title type="html"><![CDATA[说说企业级 Agent：在工厂里搓了半年，聊点实在的]]></title>
+        <id>https://wstever.github.io/winston/blog/enterprise-agent-reality</id>
+        <link href="https://wstever.github.io/winston/blog/enterprise-agent-reality"/>
+        <updated>2026-10-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[网上都在讲 Agent 多强，但没人讲接进真实工厂系统有多难。从 FDE 到 AISE，在联想 GSC 搓了半年 Agent 平台，抛开宏大叙事，聊聊企业级落地到底是怎么回事。]]></summary>
+        <content type="html"><![CDATA[<p>开个帖子聊聊企业级 AI Agent 这个话题。</p>
+<p>网上关于 Agent 的文章多如牛毛。有人讲架构，有人讲 Prompt 工程，有人讲 MCP 和工具调用，读起来都很兴奋，好像明天企业就要被 Agent 颠覆了。但我自己是真在工厂里搓 Agent 的——2026 年 6 月入职联想 GSC，all in AI 应用开发和 Agent 平台建设，半年下来感触挺多。今天抛开那些宏大概念，纯粹从一个一线落地者的角度，聊聊企业级 Agent 的本质、里面的坑，以及作为个人该用什么心态参与。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-企业级-agent-到底是个啥逻辑">1. 企业级 Agent 到底是个啥逻辑？<a href="https://wstever.github.io/winston/blog/enterprise-agent-reality#1-%E4%BC%81%E4%B8%9A%E7%BA%A7-agent-%E5%88%B0%E5%BA%95%E6%98%AF%E4%B8%AA%E5%95%A5%E9%80%BB%E8%BE%91" class="hash-link" aria-label="1. 企业级 Agent 到底是个啥逻辑？的直接链接" title="1. 企业级 Agent 到底是个啥逻辑？的直接链接" translate="no">​</a></h2>
+<p>很多人一听到"企业级 Agent"，脑子里浮现的就是 ChatGPT 套个壳，再接几个内部 API，然后"嗖"一下业务就自动化了。</p>
+<p>但真蹲到工厂里你会发现，事情完全不是这个路径。</p>
+<p>先说我们面对的家底。联想 LME 这条线，光核心系统就有十九个——ECC、APS、MES、WMS、QMS 这些，加上十条端到端的核心业务流程。一个采购流程，可能要从 SRM 走到 ERP，再走到 MES，最后落到 WMS 发货。每个系统都有自己的接口规范、权限模型和数据口径。Agent 要在这条链路上跑通，不是"聪明"就行，是得听得懂每个系统的方言。</p>
+<p>我们做的 Agent 平台叫 iChain，底下的数据底座叫 LUDP。名字听着很 fancy，但干的事情说穿了就一句：<strong>把业务里那些重复的、跨系统的、靠人肉跑腿的流程，织成一条 Agent 能跑的链。</strong></p>
+<p>这里有个认知差特别大：在外面演示的 Demo，和在生产环境跑着的 Agent，根本不是一个物种。Demo 里三步搞定，生产环境里可能有三十个异常分支要处理——某个接口超时了怎么办？某个字段突然为空了怎么办？业务方昨天刚改了审批规则怎么办？这些事，PPT 里不会写。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-落地路上三个绕不过去的坑">2. 落地路上三个绕不过去的坑<a href="https://wstever.github.io/winston/blog/enterprise-agent-reality#2-%E8%90%BD%E5%9C%B0%E8%B7%AF%E4%B8%8A%E4%B8%89%E4%B8%AA%E7%BB%95%E4%B8%8D%E8%BF%87%E5%8E%BB%E7%9A%84%E5%9D%91" class="hash-link" aria-label="2. 落地路上三个绕不过去的坑的直接链接" title="2. 落地路上三个绕不过去的坑的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-业务方要的不是-agent是昨天的客诉归好类">2.1 业务方要的不是 Agent，是"昨天的客诉归好类"<a href="https://wstever.github.io/winston/blog/enterprise-agent-reality#21-%E4%B8%9A%E5%8A%A1%E6%96%B9%E8%A6%81%E7%9A%84%E4%B8%8D%E6%98%AF-agent%E6%98%AF%E6%98%A8%E5%A4%A9%E7%9A%84%E5%AE%A2%E8%AF%89%E5%BD%92%E5%A5%BD%E7%B1%BB" class="hash-link" aria-label="2.1 业务方要的不是 Agent，是&quot;昨天的客诉归好类&quot;的直接链接" title="2.1 业务方要的不是 Agent，是&quot;昨天的客诉归好类&quot;的直接链接" translate="no">​</a></h3>
+<p>这是最扎心的一点。</p>
+<p>业务方来找你，开口永远是："我们想上 AI"。你追问想解决什么问题，对方说"就是想提效嘛"。这种对话我经历了不下二十次。</p>
+<p>但"提效"不是需求，是情绪。真正的需求得往下挖三层：是哪个岗位、在哪个时间点、因为哪个具体动作、重复了多久、造成了什么后果。挖到最后，往往落在一句特别朴素的话上——"运营早上九点想看到昨天的客诉归好类排好序"。</p>
+<p>Agent 技术圈爱谈模型多强、框架多优雅。但企业级落地里，最值钱的能力根本不是技术，是<strong>把"我们想提效"这种废话，翻译成"周一早上八点，运营打开电脑就能看到昨天的异常订单归因"这种能验收的东西</strong>。翻译不出来，Agent 再强也是个玩具。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-数据底座不干净agent-就是空中楼阁">2.2 数据底座不干净，Agent 就是空中楼阁<a href="https://wstever.github.io/winston/blog/enterprise-agent-reality#22-%E6%95%B0%E6%8D%AE%E5%BA%95%E5%BA%A7%E4%B8%8D%E5%B9%B2%E5%87%80agent-%E5%B0%B1%E6%98%AF%E7%A9%BA%E4%B8%AD%E6%A5%BC%E9%98%81" class="hash-link" aria-label="2.2 数据底座不干净，Agent 就是空中楼阁的直接链接" title="2.2 数据底座不干净，Agent 就是空中楼阁的直接链接" translate="no">​</a></h3>
+<p>第二个坑，是数据。</p>
+<p>我见过太多项目，上来就选模型、搭框架、画架构图，跑了两周发现接进来的数据全是脏的。同一个物料编码，ERP 里叫 A，MES 里叫 B，WMS 里叫 C。Agent 拿着这种数据去做决策，比不用 Agent 还可怕——它一本正经地胡说八道，业务方还信了。</p>
+<p>所以我们现在的顺序是反的：先看数据底座干不干净，再谈 Agent。LUDP 这个数据平台存在的意义，就是把十九个系统的数据口径先对齐，Agent 才能在上面跑。<strong>数据不通的地方，Agent 接得越多，事故越大。</strong></p>
+<p>这也解释了为什么制造业的 AI 落地比互联网慢一拍。互联网公司的数据天生在自己的闭环里，制造业的数据散在十九个异构系统里，光清洗和对齐就是一两年的工程。急不来。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="23-稳定性比智能重要一百倍">2.3 稳定性比智能重要一百倍<a href="https://wstever.github.io/winston/blog/enterprise-agent-reality#23-%E7%A8%B3%E5%AE%9A%E6%80%A7%E6%AF%94%E6%99%BA%E8%83%BD%E9%87%8D%E8%A6%81%E4%B8%80%E7%99%BE%E5%80%8D" class="hash-link" aria-label="2.3 稳定性比智能重要一百倍的直接链接" title="2.3 稳定性比智能重要一百倍的直接链接" translate="no">​</a></h3>
+<p>第三个坑，是稳定性。</p>
+<p>消费级 AI 产品，答错了用户笑一笑就过去了。企业级 Agent 要是在发货流程里答错一步，那是真金白银的损失。</p>
+<p>所以我们内部有个不成文的规矩：<strong>能规则解决的，别交给模型。</strong> 模型只处理那些真正模糊的、需要语义理解的环节——比如把客户的抱怨归类成"物流慢"还是"质量差"。剩下的流程路由、字段校验、状态流转，老老实实写规则。很多人觉得这不够"AI"，但生产环境里，一个不会出错的规则，胜过十个偶尔惊艳但偶尔抽风的模型。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-聊聊落地过程中的各方">3. 聊聊落地过程中的各方<a href="https://wstever.github.io/winston/blog/enterprise-agent-reality#3-%E8%81%8A%E8%81%8A%E8%90%BD%E5%9C%B0%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%90%84%E6%96%B9" class="hash-link" aria-label="3. 聊聊落地过程中的各方的直接链接" title="3. 聊聊落地过程中的各方的直接链接" translate="no">​</a></h2>
+<p>在企业级 Agent 这个圈子里，不同角色的处境完全不一样。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-业务方怕被替代又怕被落下">3.1 业务方：怕被替代，又怕被落下<a href="https://wstever.github.io/winston/blog/enterprise-agent-reality#31-%E4%B8%9A%E5%8A%A1%E6%96%B9%E6%80%95%E8%A2%AB%E6%9B%BF%E4%BB%A3%E5%8F%88%E6%80%95%E8%A2%AB%E8%90%BD%E4%B8%8B" class="hash-link" aria-label="3.1 业务方：怕被替代，又怕被落下的直接链接" title="3.1 业务方：怕被替代，又怕被落下的直接链接" translate="no">​</a></h3>
+<p>这是最微妙的一方。</p>
+<p>一线业务同学对 Agent 的态度特别拧巴。一方面，他们是重复劳动的直接受害者，心里清楚这些活儿不该人干；另一方面，又隐隐担心"AI 把我活干了，我怎么办"。</p>
+<p>我的经验是，别跟他们讲"Agent 是来帮你的"这种空话。空话听多了反而警惕。不如直接坐下来，看他一天怎么干活，把他最烦的那件事拎出来——比如每周五要花半天手工导出三张表合并——然后说：这个事我帮你自动化，你省下的时间去干更有判断含量的活。</p>
+<p><strong>业务方不害怕 AI，他们害怕的是失控。</strong> 你让他看到 Agent 只是把他从表堆里捞出来，而不是把他捞走，他自然会帮你。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-it要的是稳定不是炫酷">3.2 IT：要的是稳定，不是炫酷<a href="https://wstever.github.io/winston/blog/enterprise-agent-reality#32-it%E8%A6%81%E7%9A%84%E6%98%AF%E7%A8%B3%E5%AE%9A%E4%B8%8D%E6%98%AF%E7%82%AB%E9%85%B7" class="hash-link" aria-label="3.2 IT：要的是稳定，不是炫酷的直接链接" title="3.2 IT：要的是稳定，不是炫酷的直接链接" translate="no">​</a></h3>
+<p>IT 部门是另一个故事。</p>
+<p>任何一个新 Agent 要接进生产环境，IT 第一反应不是"哇好酷"，是"权限怎么走？日志怎么留？出问题怎么回滚？"。这不是保守，这是职责——十九个系统跑着整个公司的供应链，不能因为一个 Agent 原型就搞停一条线。</p>
+<p>所以企业级 Agent 的开发节奏，和互联网产品完全是两个物种。互联网是快速迭代，企业级是<strong>慢就是快</strong>。你花两周把一个 Agent 打磨到 95 分再接进去，比花两周做个 60 分的原型被 IT 拒掉，要快得多。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-开发者demo-五分钟接系统两个月">3.3 开发者：Demo 五分钟，接系统两个月<a href="https://wstever.github.io/winston/blog/enterprise-agent-reality#33-%E5%BC%80%E5%8F%91%E8%80%85demo-%E4%BA%94%E5%88%86%E9%92%9F%E6%8E%A5%E7%B3%BB%E7%BB%9F%E4%B8%A4%E4%B8%AA%E6%9C%88" class="hash-link" aria-label="3.3 开发者：Demo 五分钟，接系统两个月的直接链接" title="3.3 开发者：Demo 五分钟，接系统两个月的直接链接" translate="no">​</a></h3>
+<p>这可能是最有共鸣的一方。</p>
+<p>在笔记本上跑 Demo，调两个 API，写一段 Prompt，五分钟出效果。真要接进生产，光是摸清每个系统的接口文档、申请权限、处理异常分支、写监控和告警，两个月都算快的。</p>
+<p>我自己之前做电商客服数据分析、做教师工作流 Agent，都是单链路、小范围，几天就能跑通。换到企业级场景，光是一个跨系统的审批流，就得把五个系统的状态机对齐。这种活儿不性感，但这才是企业级 Agent 的真实工作量。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-个人该持什么心态">4. 个人该持什么心态？<a href="https://wstever.github.io/winston/blog/enterprise-agent-reality#4-%E4%B8%AA%E4%BA%BA%E8%AF%A5%E6%8C%81%E4%BB%80%E4%B9%88%E5%BF%83%E6%80%81" class="hash-link" aria-label="4. 个人该持什么心态？的直接链接" title="4. 个人该持什么心态？的直接链接" translate="no">​</a></h2>
+<p>说了这么多现实问题，那我们普通开发者，到底该以什么姿势参与这波浪潮？</p>
+<p>我总结三条自己踩坑后得出来的体会。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-别当技术传教士">4.1 别当技术传教士<a href="https://wstever.github.io/winston/blog/enterprise-agent-reality#41-%E5%88%AB%E5%BD%93%E6%8A%80%E6%9C%AF%E4%BC%A0%E6%95%99%E5%A3%AB" class="hash-link" aria-label="4.1 别当技术传教士的直接链接" title="4.1 别当技术传教士的直接链接" translate="no">​</a></h3>
+<p>这是最重要的一条。</p>
+<p>很多同学进了企业，学了几个月大模型，就开始到处布道："你们这个流程也该上 AI""你们那个报表也该 Agent 化"。业务方表面点头，心里想的是"你先把我这个月报做出来再说"。</p>
+<p><strong>技术是解决方案，不是信仰。</strong> 别拿着锤子找钉子。先坐到业务对面，听他们抱怨，听他们吐槽，听他们说"这事儿每周要耗我半天"。听到那个具体的痛点，再决定上不上 Agent。上对了，你是救星；上错了，你是麻烦制造者。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-关注那些能带走的东西">4.2 关注那些"能带走的东西"<a href="https://wstever.github.io/winston/blog/enterprise-agent-reality#42-%E5%85%B3%E6%B3%A8%E9%82%A3%E4%BA%9B%E8%83%BD%E5%B8%A6%E8%B5%B0%E7%9A%84%E4%B8%9C%E8%A5%BF" class="hash-link" aria-label="4.2 关注那些&quot;能带走的东西&quot;的直接链接" title="4.2 关注那些&quot;能带走的东西&quot;的直接链接" translate="no">​</a></h3>
+<p>在企业里做 Agent 落地，有些东西是这家公司特有的——比如内部系统的接口规范、特定流程的审批逻辑、公司内部的组织文化。这些你离开这家公司就带不走。</p>
+<p>什么是能带走的？</p>
+<ul>
+<li class=""><strong>需求翻译能力</strong>：把业务方模糊的抱怨，翻译成可验收的技术需求。这个能力在任何行业都值钱。</li>
+<li class=""><strong>流程抽象能力</strong>：从一条具体的业务流程里，抽象出通用的模式。下次换个行业，你知道该从哪里下手。</li>
+<li class=""><strong>跨部门协作能力</strong>：在业务、IT、数据、安全之间斡旋，把一个项目推上线。这种能力比任何框架都稀缺。</li>
+<li class=""><strong>对"脏数据"的敏感度</strong>：知道一个 Agent 在生产环境会被哪些真实世界的意外搞崩。这是 Demo 玩家永远学不到的。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-进退从容别-all-in-在某个具体项目上">4.3 进退从容，别 all in 在某个具体项目上<a href="https://wstever.github.io/winston/blog/enterprise-agent-reality#43-%E8%BF%9B%E9%80%80%E4%BB%8E%E5%AE%B9%E5%88%AB-all-in-%E5%9C%A8%E6%9F%90%E4%B8%AA%E5%85%B7%E4%BD%93%E9%A1%B9%E7%9B%AE%E4%B8%8A" class="hash-link" aria-label="4.3 进退从容，别 all in 在某个具体项目上的直接链接" title="4.3 进退从容，别 all in 在某个具体项目上的直接链接" translate="no">​</a></h3>
+<p>技术风向变得太快。三年前大家还在聊微服务和云原生，现在全行业都在往大模型和 Agent 上扑。公司的战略会调，项目的优先级会变，今天的明星项目可能明天就资源缩减。</p>
+<p>我的态度是：在这个项目里的时候，就把它扎扎实实干好，把上面那些能带走的能力学到手；如果哪天风向变了、项目调整了，也别内耗。<strong>项目有生命周期，但你练出来的需求翻译能力、流程抽象能力、跨部门推动能力，永远是你的。</strong></p>
+<p>顺便说一句，今年 9 月我还入选了清华大学教育学院 MAIC 项目的首批学习体验官，在企业落地之外，也在从教育的视角回看 AI 到底该怎么学、怎么教。两边视角对照着看，很多事情会更清楚。</p>
+<hr>
+<p>说到底，企业级 Agent 这件事，技术从来不是最难的部分。难的是耐心——耐心听业务方把话说完，耐心把数据洗干净，耐心把异常分支补全，耐心接受"慢就是快"。</p>
+<p>网上那些三个月颠覆某个行业的故事，听听就好。真在工厂里搓过 Agent 的人都知道，<strong>改变一个流程，比训练一个模型难一百倍。</strong></p>
+<p>但也正因为难，做成了才有价值。</p>]]></content>
+        <author>
+            <name>本本本添哥</name>
+            <uri>https://github.com/wstever</uri>
+        </author>
+        <category label="AI Agent" term="AI Agent"/>
+        <category label="企业数字化" term="企业数字化"/>
+        <category label="制造业" term="制造业"/>
+        <category label="工作流" term="工作流"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[从 FDE 到 AISE，在动荡中找到自己擅长的事情]]></title>
+        <id>https://wstever.github.io/winston/blog/fde-to-aise</id>
+        <link href="https://wstever.github.io/winston/blog/fde-to-aise"/>
+        <updated>2026-10-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[AI 没有淘汰岗位，它在淘汰"只会一种解法"的人。聊聊我从 FDE 到 AISE 的身份转型，以及普通人怎么在动荡里找到自己擅长的事。]]></summary>
+        <content type="html"><![CDATA[<p>去年有位朋友问我：你现在到底干什么的？</p>
+<p>我张了张嘴，发现自己有三个答案。在联想做供应链数字化，业余带电商项目，周末还是中学语文老师。三个答案都是真的，但单独拎出哪个来都不完整。那一瞬间我意识到，我大概正在经历一次谁都没教过的职业转型。</p>
+<p>后来我接触到一个概念，叫 FDE，Forward Deployed Engineer，前向部署工程师。最早是 Palantir 那帮人搞出来的：工程师不坐在总部写代码，而是直接进驻客户现场，闻着业务里的火药味，把技术翻译成能落地的解法。我当时一看就懂了——这不就是我在干的事吗。</p>
+<p>只是我驻的"现场"有点多。工厂车间里跑供应链流程，电商后台翻客服记录，晚自习后改一摞数学卷子。场景五花八门，但动作是同一个：找到那个让人重复劳动的卡点，把 AI 按上去，看它能不能转起来。</p>
+<p>再往后想一步，我觉得 FDE 还会往前再走一格。从 FDE 到 AISE，AI Solution Engineer，AI 解决方案工程师。区别在哪儿？FDE 是"把系统部署到现场"的人，AISE 是"把问题定义清楚"的人。模型能力会越来越强，强到不需要你教它做事；但业务里那些模糊的、拧巴的、说不出口的需求，永远需要一个人坐在现场，一点点问出来、拆开、排好序。</p>
+<p>这才是 AI 时代真正值钱的能力。不是谁的 Prompt 写得花，是谁能坐在业务对面，把"我们想提效"这种废话，翻译成"周一早上八点，运营同学打开电脑就能看到昨天的客诉归好类"这种能验收的东西。</p>
+<p>说到动荡，这两年大家应该都体感明显。行业在抖，岗位在抖，连"稳定"这个词本身都在抖。我自己的解法是两套老工具加一个新参照。</p>
+<p>老工具之一是 ABZ 计划。A 计划是主业，保底线，把现金流和核心能力攥死；B 计划是试探，电商、公众号、工具，都算，成了是惊喜，不成是学费；Z 计划是退路，算清楚最坏情况摔下来能接住自己。三根支柱撑住，人就不慌。</p>
+<p>老工具之二是奥德赛计划。轨道思维是把人生当成一条铁轨，脱轨即失败；旅程思维是把人生当成航海，风向随时变，但每段航程都有收获。我现在更信后者。你看我这些身份，供应链、电商、教育，看似毫不相干，其实都在喂同一种能力：把 AI 用进真实工作流。航向可以乱，能力不白练。</p>
+<p>新参照是可汗学院那次 TED。萨尔曼·可汗讲他怎么跟着热情走，从给侄女补课一路讲到改变全世界的学习方式。我听完最大的感触是：擅长这个事情，真不是坐在屋里想出来的，是一件一件做出来的。我不知道自己擅长什么，但我知道上周我把学情分析从一夜压缩到一节课，这个周我又把某个客服归类准确率提了三个点。做着做着，轮廓就出来了。</p>
+<p>所以如果你也在动荡里发慌，我的经验就一条：别盯着风口问"我该学什么"，先盯着自己工位上那个最烦的重复劳动，问"这玩意儿能不能让 AI 干"。干成了，你就有了第一条解法；干它十次，你就有了十种。风口会过去，解法不会。</p>
+<p>从 FDE 到 AISE，变的不是头衔，是坐的位置。往业务那边再坐近一点，再近一点。</p>]]></content>
+        <author>
+            <name>本本本添哥</name>
+            <uri>https://github.com/wstever</uri>
+        </author>
+        <category label="职业规划" term="职业规划"/>
+        <category label="AI" term="AI"/>
+        <category label="个人成长" term="个人成长"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[我把教师工作流重排了一遍：备课、批阅和反馈]]></title>
+        <id>https://wstever.github.io/winston/blog/teacher-workflow-with-ai</id>
+        <link href="https://wstever.github.io/winston/blog/teacher-workflow-with-ai"/>
+        <updated>2026-09-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[两个班一百多份周测卷，以前要改一整夜。现在我把 AI 织进了批阅、学情分析和反馈写作——不是替代老师，是让老师回到学生身上。]]></summary>
+        <content type="html"><![CDATA[<p>先交代背景。我教初中语文，同时还帮着做八年级数学的学情分析。每周最磨人的时刻，是周测卷收上来之后：一百多份，带回家，改完还要写反馈。等全部弄完抬头一看，天边都泛白了。</p>
+<p>反馈写完，人已经麻了。字迹工整的认真写两句，调皮捣蛋的想写"审题！审题！审题！"，写到第十份开始，所有评语长得都像一个模子刻出来的。学生不傻，他们看得出哪句是真心话，哪句是AI...哦不，哪句是老师凑数。</p>
+<p>这不行。我复盘了一下，批阅这件事的时间黑洞有三个。</p>
+<p>第一个是重复判断。对错判断、步骤分、知识点归类，这些是体力活，但极度占用注意力。第二个是数据沉淀。错因分布在卷子里，但没人把它汇总成"这个班第二章栽得最狠"，于是下周讲评靠印象。第三个最贵，是个性化反馈。一百个学生一百种错法，写一百条不重样的反馈，还得条条落在点子上——这事儿靠人肉，成本高到不可持续。</p>
+<p>想清楚之后，我把整个流程拆开重排了。</p>
+<p>新的流程长这样：收卷之后先拍照或者截图，喂给 AI 做结构化批阅——每题对错、错因归类、得分点，全部进一张表格。表格再聚合成班级学情：哪个知识点错得集中、哪些学生错得相似、谁在稳步退步。最后一步，AI 按每个学生的错法生成反馈草稿，我逐条过目、修改、定稿。</p>
+<p>原则只有一条：AI 出草稿，老师签字。它敢归类错因，但不敢下结论；它敢写初稿，但不敢直接发给学生。每一条反馈发出之前，都得过我这一关。这不是不信任，是职责所在——学生拿到手里的每一个字，都是教育行为，得有教育的人负责。</p>
+<p>说个具体案例。上周八年级数学周测，二次根式这块，数据一聚类就发现一件事：有十几个学生不是不会算，是"见着 √12 就以为不能再化简"。错因高度集中，根本不是能力问题，是步骤习惯问题。换以前，这种错因埋在卷山里，讲评课就按"这道题错的人多"糊弄过去了。现在讲评课直接对着这个错因打，一条幻灯片搞定，学生哦哦哦一片。</p>
+<p>语文那边也顺了一遍。作文批改最大的成本在"写得出东西但说不清为什么好/为什么差"。现在同伴互评加 AI 辅助反馈：学生先互评，AI 再把互评质量和作文本身的问题归好类推给我，我只处理最值得讲的那几篇。课堂讲评从"念范文"变成了"解剖典型病例"，学生明显更来劲。</p>
+<p>效果呢。同样一百多份卷子，批阅加反馈从一整夜压缩到一节课。腾出来的时间干嘛？看那几个波动大的学生，找他们聊。技术能替我改卷子，替我归错因，替我起草反馈，但替不了我拍着一个学生的肩膀说"你这周状态不对，聊聊"。</p>
+<p>教育这件事，技术能做的永远是减法——减去重复，减去格式，减去熬夜。减出来的时间，请还给教育本身。</p>]]></content>
+        <author>
+            <name>本本本添哥</name>
+            <uri>https://github.com/wstever</uri>
+        </author>
+        <category label="AI+教育" term="AI+教育"/>
+        <category label="工作流" term="工作流"/>
+        <category label="教师" term="教师"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[用 Streamlit 搓短视频工具：字幕节奏和配音的坑]]></title>
+        <id>https://wstever.github.io/winston/blog/streamlit-shortvideo-tool</id>
+        <link href="https://wstever.github.io/winston/blog/streamlit-shortvideo-tool"/>
+        <updated>2026-09-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[一个人做口播短视频，配音和字幕对不齐能逼死强迫症。我用 Streamlit 加本机 SAPI 语音合成搓了个小工具，记录几个关键坑。]]></summary>
+        <content type="html"><![CDATA[<p>我做口播短视频的流程，之前一直是这样的：写稿，念出来录音，导入剪映，一句一句对字幕，拖轴拖到眼瞎。</p>
+<p>问题出在哪？配音是连续的，字幕是离散的。一句话三秒，两个字也是三秒，观众还没看清就划走了。手动拖轴？一条三分钟的视频，三十多条字幕，拖完轴创作的激情也凉透了。</p>
+<p>于是自己搓了一个。技术栈朴素得可怜：Streamlit 做界面，win32com 调本机 SAPI 做语音合成，moviepy 拼画面和字幕。没有云服务，没有 API Key，全部跑在本机。这种小工具，越土越可靠。</p>
+<p>工具能跑之后，真正的坑才刚开始。</p>
+<p>第一个坑是字幕时长。一开始我按文字比例分时间，三秒的配音给十个字，那每个字零点三秒，均匀分配。结果惨不忍睹：短字幕一闪而过，长字幕赖着不走。观众的眼睛是有惯性的，字幕得给人留反应时间，但又不能拖到催眠。最后的方案是设上下限：最短一点四秒，最长三点五秒，中间按文字长度插值。别小看这两个数字，这是拿十几条视频一帧帧看观众划走时机磨出来的。</p>
+<p>第二个坑是速度档位。不同内容需要的呼吸感不一样。口播干货可以快，情绪内容得慢。于是做了三档：慢速一点八到四秒，正常一点四到三点五秒，快速一秒到二点五。默认走正常——大多数场景够用，嫌快的自己调。参数比花活重要，这种工具一上手就该能出片，别让用户先学十分钟。</p>
+<p>第三个坑是配音开关。原本觉得配音是核心功能，后来发现有些片段只要画面和BGM，人声反而是干扰。加了开关，默认开启，想静音一键关。默认值这事儿有讲究：核心功能默认开，锦上添花的功能默认关，但两者都必须一键可达。</p>
+<p>第四个坑是 SAPI 的脾气。本机合成不挑环境，但语速和停顿得调。中文文本里的标点就是天然的气口，标点切分做细了，合成出来的节奏比硬调语速自然得多。另外分段显示的逻辑也改了：字幕跟着配音走，不是跟着句子走，声画对齐了观众才不出戏。</p>
+<p>现在我的口播流程变成了：粘稿子，选档位，点生成，喝口水，回来拿成片。一个人做短视频，工具不用大，能省一小时就是一小时。省下来的时间干吗？写稿。内容才是那个一，工具只是后面那些零。</p>
+<p>顺便说一句，这玩意儿也在持续迭代。下一步想把字幕样式做成几套皮肤，让不同栏目有不同长相。有同样在一个人做短视频的朋友，欢迎来交流拖轴 PTSD 的康复经验。</p>]]></content>
+        <author>
+            <name>本本本添哥</name>
+            <uri>https://github.com/wstever</uri>
+        </author>
+        <category label="Streamlit" term="Streamlit"/>
+        <category label="TTS" term="TTS"/>
+        <category label="短视频" term="短视频"/>
+        <category label="工具" term="工具"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[电商客服数据分析的 AI 解法：聊天记录、订单和退款]]></title>
+        <id>https://wstever.github.io/winston/blog/ecommerce-service-data-skill</id>
+        <link href="https://wstever.github.io/winston/blog/ecommerce-service-data-skill"/>
+        <updated>2026-08-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[客服数据天天几万条，运营想看"昨天客户在骂什么"只能靠人翻。我用一套 Skill 把聊天记录、订单、退款三类数据跑成了每日归因日报。]]></summary>
+        <content type="html"><![CDATA[<p>做电商的朋友应该都懂一个场景：运营同学早上九点冲进办公室，想问昨天客服那边情况怎么样。客户在骂什么？哪个 SKU 出问题了？退款是不是异常？</p>
+<p>然后他发现，答案是"我去看看"。</p>
+<p>客服记录一天几万条，散落在各个平台的导出文件里。想回答"昨天客户在骂什么"，传统解法是运营或者客服主管亲自翻，一上午就过去了。翻完得出的结论还带个人情绪：翻到什么就当什么。</p>
+<p>这不是人的问题，是数据没被读。电商这三类数据，聊天记录、订单、退款，其实是金矿，缺的只是读矿的眼睛。</p>
+<p>先说聊天记录。这里面藏着三样东西：产品问题、物流吐槽、服务态度。每条记录经过分类归因，就能回答"昨天客户集中骂什么"。更进一步可以打情绪分——不是 sentiment 那种玩具分析，是标记"这条客户已经急了，再没人管就要上升成投诉"。响应慢、答非所问、重复提问，都能从记录里挖出来。</p>
+<p>再说订单。订单数据的价值在路径和异常。哪个 SKU 咨询多但下单少？哪个时段催单集中？换货链路卡在哪一环？这些单看订单看不出来，得和聊天记录交叉：客户问的是什么，最后买没买，中间经历了什么。</p>
+<p>最后是退款。退款数据是结果数据，客户已经用脚投票了。聚类退款原因，识别哪些是可挽回的损失——比如"物流慢导致退款"和"质量差导致退款"，前者是运营问题，后者是产品问题，处理路径完全不同。</p>
+<p>整套东西我做成了一个 AI Skill。流程是这样的：定时导出，先过一道脱敏，手机号地址一律打码；然后分块，按会话切分而不是按字数切分，保住上下文；接着分类归因加情绪打分；最后聚合生成日报，问题按严重度排序，附上处理建议。</p>
+<p>这里头最关键的认知是：AI 管归类和草稿，人管决策。Skill 可以自信地说"昨天 37% 的客诉集中在物流时效"，但它不敢说"所以我们该换快递公司"。后者需要人，需要权衡成本、履约压力和客户结构。Skill 的价值是把人从翻记录的体力活里捞出来，把判断的时间还给判断。</p>
+<p>说个真实战果。公牛排插有个 SKU，有段时间客诉集中在一句话上："插不紧"。运营本来以为是发货慢， Skill 把这类记录一聚类，发现关键词高度指向产品公差，直接推给了产品侧。后来查明是某批次铜片回弹不足。你看，这就是数据的价值：它不会委屈自己说客气话，问题是什么就是什么。</p>
+<p>客服数据这个矿，挖法不难，难的是天天挖。靠人，一周就懈怠；靠 Skill，它不累。运营同学现在早上打开电脑，昨天的客诉已经归好类、排好序、附上了建议。他们终于可以九点就开始解决问题，而不是九点开始制造问题。</p>]]></content>
+        <author>
+            <name>本本本添哥</name>
+            <uri>https://github.com/wstever</uri>
+        </author>
+        <category label="电商" term="电商"/>
+        <category label="数据分析" term="数据分析"/>
+        <category label="AI Skill" term="AI Skill"/>
+        <category label="客服" term="客服"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[把散乱教案变成知识库：我的 Skill 管理实践]]></title>
+        <id>https://wstever.github.io/winston/blog/messy-docs-to-knowledge-base</id>
+        <link href="https://wstever.github.io/winston/blog/messy-docs-to-knowledge-base"/>
+        <updated>2026-08-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[教案在文件传输助手，逐字稿在录音笔，资料在网盘——用的时候永远找不到。我花了半年把这些碎片沉淀成 Skill 和知识库，聊聊方法和坑。]]></summary>
+        <content type="html"><![CDATA[<p>先做个自我批评。两年前我的知识资产分布是这样的：教案散在微信文件传输助手，会议逐字稿在 Plaud 里躺着，培训资料在百度网盘分层收藏，好用的提示词记在各种备忘录。真到用的时候，永远是想不起来存过，就是想不起来存哪。</p>
+<p>这不叫知识管理，这叫数字仓鼠。</p>
+<p>转变的契机是开始认真用 AI。我逐渐意识到一个问题：AI 很聪明，但它不了解我。它不知道我带过哪届学生，不知道我踩过哪些坑，不知道我们电商的客诉长什么样。每次对话都从零开始介绍背景，用两次就累了。</p>
+<p>后来我想明白一件事：知识管理的目的不是收纳整齐，是<strong>让 AI 记得我做过什么</strong>。文件存得再整齐，AI 看不见，就等于不存在。</p>
+<p>于是我开始做 Skill 化。Skill 这个词可以理解为"把怎么做一件事写成 AI 能调用的流程"。普通的知识是"我有这份教案"，Skill 是"让 AI 按我的套路出一份同类教案"。前者是仓库，后者是员工。</p>
+<p>举两个自己的例子。</p>
+<p>douyin-copy-extract，抖音口播文案提取。起因是我刷到好文案想存下来，复制粘贴太琐碎，不存又亏。做成 Skill 之后，给一个链接，它按我定义的字段把文案、口播结构、钩子拆出来，自动归档。从"看到好文案"到"进我的素材库"，压缩到一步。这就是 Skill 和收藏夹的区别：收藏夹存东西，Skill 跑流程。</p>
+<p>另一个是会议逐字稿的归档。我用 Plaud 录了不少会，以前逐字稿导出来就吃灰——两万字的原文，谁回头看？现在导出之后先过一道转纪要的 Skill：议题、结论、待办、负责人，结构化出来；原文全文进腾讯 IMA 知识库打标签归档。上周老板问起一个月前某次培训的某个结论，我三十秒就翻出来了。</p>
+<p>基础设施层面，我现在的主力是腾讯 IMA 知识库，配合分类标签体系。踩过的最大的坑是分类太细：一开始按"学科-年级-知识点"三层分，分到第三层自己都迷糊。后来改成粗分类加全文检索，宁可少分几类，不可分错一类。检索时代，分类的唯一使命是缩小范围，不是穷举世界。</p>
+<p>还有个认知升级：知识管理里最被低估的环节是"丢弃"。过时的教案、失效的流程、被证伪的判断，留着就是噪声。我现在定期清理，删掉的时候毫不留情——知识库的密度比体积重要。</p>
+<p>折腾半年最大的体会：AI 时代，你的知识库就是你给 AI 的简历。简历写得越扎实，AI 这个员工越能干。散乱的经历不会自动变成能力，但结构化的经验可以。</p>
+<p>如果你也想开始，别追求一步到位。选一个你每周都要做三遍以上的琐事，把它写成流程，那就是你的第一个 Skill。跑起来，再写第二个。</p>]]></content>
+        <author>
+            <name>本本本添哥</name>
+            <uri>https://github.com/wstever</uri>
+        </author>
+        <category label="知识管理" term="知识管理"/>
+        <category label="Skill" term="Skill"/>
+        <category label="AI" term="AI"/>
+        <category label="效率" term="效率"/>
+    </entry>
+</feed>
