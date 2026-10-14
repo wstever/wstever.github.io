@@ -34,29 +34,16 @@ jobs:
         run: npm run build
 
       # 组装部署目录（gh-pages 分支根目录即站点根）：
-      #   /winston/            —— Docusaurus 站点（baseUrl: /winston/）
+      #   /index.html          —— 在线简历首页（仓库根目录 index.html）
+      #   /winston/            —— Docusaurus 博客站（baseUrl: /winston/）
       #   /personal-toolbox/   —— 个人工作台（本地优先的单文件应用）
-      #   /index.html          —— 根路径跳转到 /winston/
       - name: Assemble deploy directory
         run: |
           rm -rf deploy
           mkdir -p deploy/winston deploy/personal-toolbox
           cp -r build/. deploy/winston/
           cp ../personal-toolbox/personal-workbench.html deploy/personal-toolbox/
-          cat > deploy/index.html <<'EOF'
-          <!DOCTYPE html>
-          <html lang="zh-CN">
-          <head>
-            <meta charset="UTF-8" />
-            <meta http-equiv="refresh" content="0; url=/winston/" />
-            <link rel="canonical" href="/winston/" />
-            <title>添哥的AI场景实战</title>
-          </head>
-          <body>
-            <p>正在跳转到 <a href="/winston/">添哥的AI场景实战</a> …</p>
-          </body>
-          </html>
-          EOF
+          cp ../index.html deploy/index.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
