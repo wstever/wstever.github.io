@@ -1,0 +1,13 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  /* 导航栏 z-index 为 var(--ifm-z-index-fixed) = 200，进度条压在其上沿 */
+  z-index: 201;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #3b82f6 0%, #2dd4bf 100%);
+  pointer-events: none;
+  will-change: transform;
+}

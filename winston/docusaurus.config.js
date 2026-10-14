@@ -1,49 +1,38 @@
 // @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
-// (when paired with `@ts-check`).
-// There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  title: '添哥的AI场景实战',
+  tagline: 'AI × 供应链 × 电商 × 教育 —— 把 AI 用进真实工作流',
+  favicon: 'img/favicon.svg',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
-  // Set the production url of your site here
   url: 'https://wstever.github.io',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  // 如果是用户主站 (仓库名为 wstever.github.io)，这里填 '/'
-  // 如果是项目子站 (仓库名为 winston)，这里填 '/winston/'
   baseUrl: '/winston/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'wstever', // Usually your GitHub org/user name.
-  projectName: 'winston', // Usually your repo name.
+  organizationName: 'wstever',
+  projectName: 'winston',
 
-  // 部署行为配置
-  deploymentBranch: 'gh-pages', // 部署到的分支名，通常默认为 gh-pages
-  trailingSlash: false,         // GitHub Pages 建议设为 false
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
+
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'zh-Hans',
+    locales: ['zh-Hans'],
   },
 
   presets: [
@@ -53,22 +42,21 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          routeBasePath: 'topics',
+          editUrl: 'https://github.com/wstever/wstever.github.io/edit/master/winston/',
         },
         blog: {
           showReadingTime: true,
+          readingTime: ({content, frontMatter, defaultReadingTime}) =>
+            frontMatter.readingTime ?? defaultReadingTime({content}),
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
+          editUrl: 'https://github.com/wstever/wstever.github.io/edit/master/winston/',
+          blogSidebarCount: 'ALL',
+          blogSidebarTitle: '全部文章',
+          postsPerPage: 10,
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -83,27 +71,48 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/social-card.png',
+      metadata: [
+        {name: 'keywords', content: 'AI, Agent, Skill, 供应链数字化, 电商, 教育, 工作流, 添哥'},
+        {name: 'author', content: '本本本添哥'},
+      ],
       colorMode: {
+        defaultMode: 'dark',
         respectPrefersColorScheme: true,
+        disableSwitch: false,
+      },
+      docs: {
+        sidebar: {
+          hideable: true,
+          autoCollapseCategories: true,
+        },
       },
       navbar: {
-        title: 'My Site',
+        title: '添哥的AI场景实战',
         logo: {
-          alt: 'My Site Logo',
+          alt: '添哥的AI场景实战',
           src: 'img/logo.svg',
+          srcDark: 'img/logo.svg',
         },
         items: [
+          {to: '/', label: '首页', position: 'left'},
+          {to: '/blog', label: '博客', position: 'left'},
           {
             type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            sidebarId: 'topicsSidebar',
+            label: '专题',
             position: 'left',
-            label: 'Tutorial',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/about', label: '关于', position: 'left'},
+          {to: '/projects', label: '项目', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://wstever.github.io/personal-toolbox/personal-workbench.html',
+            label: '🧰 个人工作台',
+            position: 'right',
+            target: '_blank',
+          },
+          {
+            href: 'https://github.com/wstever',
             label: 'GitHub',
             position: 'right',
           },
@@ -113,50 +122,48 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: '内容',
+            items: [
+              {label: '博客', to: '/blog'},
+              {label: '专题', to: '/topics/intro'},
+              {label: '关于我', to: '/about'},
+              {label: '项目', to: '/projects'},
+            ],
+          },
+          {
+            title: '工具',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: '个人工作台',
+                href: 'https://wstever.github.io/personal-toolbox/personal-workbench.html',
+              },
+              {
+                label: '公众号排版工具',
+                href: 'https://wstever.github.io/winston/tools/md2wechat/',
+              },
+              {
+                label: '个人提效工具箱',
+                href: 'https://github.com/wstever/wstever.github.io/tree/master/personal-toolbox',
               },
             ],
           },
           {
-            title: 'Community',
+            title: '找到我',
             items: [
+              {label: 'GitHub', href: 'https://github.com/wstever'},
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: '公众号：添哥的AI场景实战',
+                href: '/about',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} 本本本添哥 · Built with Docusaurus`,
       },
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ['bash', 'python', 'json', 'yaml', 'diff'],
       },
     }),
 };

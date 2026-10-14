@@ -1,23 +1,267 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
+.page {
+  overflow-x: hidden;
+}
 
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
+/* ============ Hero ============ */
+
+.hero {
   position: relative;
+  padding: 5.5rem 1.5rem 4.5rem;
+  text-align: left;
   overflow: hidden;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  background:
+    radial-gradient(60rem 30rem at 85% -10%, rgba(59, 130, 246, 0.14), transparent 60%),
+    radial-gradient(40rem 24rem at 8% 110%, rgba(45, 212, 191, 0.1), transparent 60%),
+    var(--ifm-background-color);
+}
+
+.heroGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(transparent 95%, var(--ifm-color-emphasis-200) 95%) 0 0 / 100% 4rem,
+    linear-gradient(90deg, transparent 95%, var(--ifm-color-emphasis-200) 95%) 0 0 / 4rem 100%;
+  opacity: 0.35;
+  mask-image: radial-gradient(70% 70% at 50% 40%, black, transparent 75%);
+}
+
+.heroInner {
+  position: relative;
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1.1rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ifm-color-content-secondary);
+  background: var(--ifm-card-background-color);
+}
+
+.heroDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.18);
+}
+
+.heroTitle {
+  margin: 0 0 1.2rem;
+  font-size: clamp(2.2rem, 5.4vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+}
+
+.heroTitleAccent {
+  background: linear-gradient(120deg, #3b82f6 10%, #2dd4bf 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.heroSubtitle {
+  max-width: 44rem;
+  margin: 0 0 2rem;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--ifm-color-content-secondary);
+}
+
+.heroCta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.ctaPrimary {
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
+}
+
+.ctaGhost {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-card-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.ctaGhost:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.ctaWorkbench {
+  border: 1px solid rgba(45, 212, 191, 0.45);
+  background: rgba(45, 212, 191, 0.1);
+  color: #0f766e;
+}
+
+[data-theme='dark'] .ctaWorkbench {
+  color: #5eead4;
+}
+
+.ctaWorkbench:hover {
+  border-color: #2dd4bf;
+  background: rgba(45, 212, 191, 0.18);
+  color: #0f766e;
+}
+
+[data-theme='dark'] .ctaWorkbench:hover {
+  color: #99f6e4;
+}
+
+/* ============ Sections ============ */
+
+.main {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 4rem 0 1rem;
+}
+
+.sectionHead {
+  max-width: 40rem;
+  margin-bottom: 2.2rem;
+}
+
+.sectionTitle {
+  margin: 0 0 0.6rem;
+  font-size: 1.7rem;
+  font-weight: 750;
+}
+
+.sectionDesc {
+  margin: 0;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.8;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem;
 }
 
 @media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.buttons {
+@media screen and (max-width: 576px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  padding: 1.3rem 1.4rem 1.4rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 14px;
+  background: var(--ifm-card-background-color);
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(59, 130, 246, 0.55);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+}
+
+[data-theme='dark'] .card:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+.cardTop {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.cardIcon {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.cardTag {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.12);
+}
+
+.cardTitle {
+  margin: 0 0 0.5rem;
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.cardDesc {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--ifm-color-content-secondary);
+}
+
+/* ============ CTA band ============ */
+
+.band {
+  margin: 3.5rem 0 4rem;
+  padding: 2.2rem 2.4rem;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: 18px;
+  background:
+    radial-gradient(30rem 16rem at 90% 0%, rgba(59, 130, 246, 0.14), transparent 65%),
+    var(--ifm-card-background-color);
+}
+
+.bandInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+}
+
+.bandTitle {
+  margin: 0 0 0.45rem;
+  font-size: 1.3rem;
+  font-weight: 750;
+}
+
+.bandDesc {
+  margin: 0;
+  color: var(--ifm-color-content-secondary);
+}
+
+.bandActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
 }

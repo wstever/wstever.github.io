@@ -1,0 +1,2 @@
+# 个人工作台同时存在于 personal-toolbox 独立仓库，避免 CRLF 转换造成的内容抖动
+personal-toolbox/personal-workbench.html -text

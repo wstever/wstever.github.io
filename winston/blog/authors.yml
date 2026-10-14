@@ -1,25 +1,11 @@
-yangshun:
-  name: Yangshun Tay
-  title: Ex-Meta Staff Engineer, Co-founder GreatFrontEnd
-  url: https://linkedin.com/in/yangshun
-  image_url: https://github.com/yangshun.png
+tiange:
+  name: 本本本添哥
+  title: 供应链数字化 / AI 落地实践者
+  url: https://github.com/wstever
+  image_url: https://github.com/wstever.png
   page: true
   socials:
-    x: yangshunz
-    linkedin: yangshun
-    github: yangshun
-    newsletter: https://www.greatfrontend.com
-
-slorber:
-  name: Sébastien Lorber
-  title: Docusaurus maintainer
-  url: https://sebastienlorber.com
-  image_url: https://github.com/slorber.png
-  page:
-    # customize the url of the author page at /blog/authors/<permalink>
-    permalink: '/all-sebastien-lorber-articles'
-  socials:
-    x: sebastienlorber
-    linkedin: sebastienlorber
-    github: slorber
-    newsletter: https://thisweekinreact.com
+    github: wstever
+  description: >
+    在联想做 GSC 供应链数字化，业余带电商项目、教中学语文、运营公众号
+    「添哥的AI场景实战」。相信 AI 的价值不在多聪明，而在多了解你真实的工作。

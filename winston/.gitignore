@@ -3,10 +3,12 @@
 
 # Production
 /build
+/_build-old
 
 # Generated files
 .docusaurus
 .cache-loader
+/build.log
 
 # Misc
 .DS_Store

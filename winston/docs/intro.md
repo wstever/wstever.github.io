@@ -1,47 +1,25 @@
 ---
+id: intro
+title: 专题
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# 专题
 
-Let's discover **Docusaurus in less than 5 minutes**.
+博客里的文章是散点记录，这个专区放更成体系的东西。目前有两个专题，都是我自己正在实践的方向，会持续更新。
 
-## Getting Started
+## Agent 与 Skill 实战
 
-Get started by **creating a new site**.
+把零散的经验固化成 AI 可调用的能力。从为什么需要 Skill，到一个技能从需求到上线的完整过程，再到把整个教师工作流 Agent 化。
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+[进入专题：Agent 与 Skill 实战 →](./agent-skills/why-skill)
 
-### What you'll need
+## AI + 中小学教育
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+技术落到讲台上的两个场景：数学学情分析的自动化，以及语文写作教学与整本书阅读的 AI 辅助设计。
 
-## Generate a new site
+[进入专题：AI + 中小学教育 →](./ai-education/math-learning-analytics)
 
-Generate a new Docusaurus site using the **classic template**.
+---
 
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+专题内容会随实践持续增补。所有内容遵循同一个原则：**只写自己跑通过的流程，不写没验证过的设想**。
